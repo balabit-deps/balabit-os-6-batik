@@ -1,0 +1,26 @@
+From: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Date: Mon, 14 Oct 2013 14:59:02 +0200
+Subject: remove-js
+
+===================================================================
+---
+ build.xml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+Index: batik-1.8/build.xml
+===================================================================
+--- batik-1.8.orig/build.xml
++++ batik-1.8/build.xml
+@@ -720,9 +720,9 @@ JAVA=/usr/bin/java
+     <copy file="${src}/${project}-xml.pom.template" tofile="${maven}/${project}-xml/${completeVersion}/${project}-xml-${completeVersion}.pom" filtering="true"/>
+     <copy file="${build}/lib/${project}-xml-${completeVersion}.jar" tofile="${maven}/${project}-xml/${completeVersion}/${project}-xml-${completeVersion}.jar"/>
+ 
+-    <mkdir dir="${maven}/${project}-js/${completeVersion}"/>
+-    <copy file="${src}/${project}-js.pom.template" tofile="${maven}/${project}-js/${completeVersion}/${project}-js-${completeVersion}.pom" filtering="true"/>
+-    <copy file="${build}/lib/js.jar" tofile="${maven}/${project}-js/${completeVersion}/${project}-js-${completeVersion}.jar"/>
++    <!--mkdir dir="${maven}/${project}-js/${completeVersion}"/-->
++    <!--copy file="${src}/${project}-js.pom.template" tofile="${maven}/${project}-js/${completeVersion}/${project}-js-${completeVersion}.pom" filtering="true"/-->
++    <!--copy file="${build}/lib/js.jar" tofile="${maven}/${project}-js/${completeVersion}/${project}-js-${completeVersion}.jar"/-->
+ 
+     <!-- Generate checksums of all artifacts and POMs -->
+     <checksum algorithm="MD5" fileext=".md5">

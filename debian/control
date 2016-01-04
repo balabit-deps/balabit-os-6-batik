@@ -1,0 +1,54 @@
+Source: batik
+Section: java
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Wolfgang Baer <WBaer@gmx.de>,
+           Vincent Fourmond <fourmond@debian.org>,
+           Onkar Shinde <onkarshinde@ubuntu.com>
+Standards-Version: 3.9.6
+Build-Depends: cdbs, debhelper (>= 9)
+Build-Depends-Indep: ant,
+                     default-jdk,
+                     javahelper,
+                     libbsf-java,
+                     libcommons-io-java,
+                     libcommons-logging-java,
+                     libxalan2-java,
+                     libxml-commons-external-java,
+                     libxmlgraphics-commons-java (>= 2.0.1),
+                     maven-repo-helper,
+                     rhino
+Homepage: https://xmlgraphics.apache.org/batik/
+Vcs-Svn: svn://anonscm.debian.org/pkg-java/trunk/batik
+Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-java/trunk/batik
+
+Package: libbatik-java
+Architecture: all
+Depends: java-wrappers (>= 0.1.12),
+         libbsf-java,
+         libcommons-io-java,
+         libcommons-logging-java,
+         libxalan2-java,
+         libxml-commons-external-java,
+         libxmlgraphics-commons-java (>= 2.0.1),
+         ${misc:Depends}
+Recommends: default-jre, rhino
+Suggests: fop (>= 1:0.94)
+Breaks: elki (<= 0.6.5), libfop-java (<< 2.0)
+Description: xml.apache.org SVG Library
+ Batik is a toolkit for applications or applets that want to use images
+ in the Scalable Vector Graphics (SVG) format for various purposes, such
+ as viewing, generation or manipulation.
+ .
+ Batik provides several modules to be used in applications:
+  * A SVG generator module, usable to export graphics into the SVG format.
+  * A SVG processor and SVG Viewing component for integrating SVG viewing.
+  * A module to convert SVG to various formats, such as raster images
+    (JPEG, PNG or Tiff) and PS, PDF.
+ .
+ fop is necessary for PDF output of rasterizer.
+ .
+ rhino is necessary for using the SVG browser, squiggle.
+ .
+ For detailed information, go to http://xml.apache.org/batik/

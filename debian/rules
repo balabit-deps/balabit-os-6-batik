@@ -1,0 +1,60 @@
+#!/usr/bin/make -f
+# debian/rules for batik (uses CDBS)
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export JITC_PROCESSOR_TYPE=6
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/javahelper.mk
+include /usr/share/cdbs/1/class/ant.mk
+
+arch = $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+JAVA_HOME_DIRS       := /usr/lib/jvm/default-java
+ANT_HOME             := /usr/share/ant
+DEB_JARS             := $(ANT_HOME)/lib/ant-launcher.jar bfs \
+	gnujaxp js xalan2 xml-apis-ext xmlgraphics-commons
+DEB_ANT_COMPILER     := modern
+DEB_ANT_BUILD_TARGET := all-jar libs-jar ext-jar transcoder-jar
+DEB_BUILDDIR         := .
+DEB_ANT_BUILDFILE    := build.xml
+DEB_ANT_CLEAN_TARGET := clean
+
+# Increasing memory of the compiler
+ANT_OPTS             := -Xms256m -Xmx256m -Dbuild.sysclasspath=only
+
+LIBRARY=batik
+
+UPSTREAM_VERSION = $(subst +dfsg,,$(DEB_UPSTREAM_VERSION))
+
+LIB_NAMES = all libs
+install/libbatik-java::
+	# Install poms
+	ant maven-artifacts -Dbuild.id=Debian
+	for jar in batik-$(UPSTREAM_VERSION)/maven/*/$(UPSTREAM_VERSION)/*.jar; do \
+	  pom=$$(dirname $$jar)/$$(basename $$jar .jar).pom; \
+	  mh_installpom -v -plibbatik-java $$pom; \
+	  mh_installjar -plibbatik-java -l $$pom $$jar; \
+	done
+
+	# Install batik-all.jar and batik-libs.jar
+	for name in $(LIB_NAMES); do \
+	  install -m 644 batik-$(UPSTREAM_VERSION)/lib/batik-$$name-$(UPSTREAM_VERSION).jar debian/libbatik-java/usr/share/java/batik-$$name-$(UPSTREAM_VERSION).jar; \
+	  ln -s batik-$$name-$(UPSTREAM_VERSION).jar debian/libbatik-java/usr/share/java/batik-$$name.jar; \
+	done
+	ln -s batik-all-$(UPSTREAM_VERSION).jar debian/libbatik-java/usr/share/java/batik-$(UPSTREAM_VERSION).jar; \
+	ln -s batik-all-$(UPSTREAM_VERSION).jar debian/libbatik-java/usr/share/java/batik.jar; \
+
+	# Install wrapper scripts
+	install -d debian/libbatik-java/usr/bin
+	for prog in debian/wrappers/* ; do \
+		install -t debian/libbatik-java/usr/bin/ $$prog  ; \
+	done
+
+clean::
+	mh_clean
+
+get-orig-source:
+	uscan --force-download --rename

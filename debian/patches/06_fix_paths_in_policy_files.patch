@@ -1,0 +1,79 @@
+From: Vincent Fourmond <fourmond@debian.org
+Date: Mon, 14 Oct 2013 14:59:02 +0200
+Subject: 06_fix_paths_in_policy_files
+
+---
+ .../apache/batik/apps/rasterizer/resources/rasterizer.policy   |  8 ++++----
+ .../apache/batik/apps/svgbrowser/resources/svgbrowser.policy   | 10 +++++-----
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+Index: batik-1.8/resources/org/apache/batik/apps/rasterizer/resources/rasterizer.policy
+===================================================================
+--- batik-1.8.orig/resources/org/apache/batik/apps/rasterizer/resources/rasterizer.policy
++++ batik-1.8/resources/org/apache/batik/apps/rasterizer/resources/rasterizer.policy
+@@ -18,7 +18,7 @@
+ // $Id: rasterizer.policy 1664314 2015-03-05 11:45:15Z lbernardo $
+ // -----------------------------------------------------------------------------
+ 
+-grant codeBase "${app.dev.base}/classes/" {
++grant codeBase "file:/usr/share/java/batik-all.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+@@ -26,19 +26,19 @@ grant codeBase "${app.dev.base}/lib/xml-
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/xerces_2_5_0.jar" {
++grant codeBase "file:/usr/share/java/xercesImpl.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/fop-transcoder-allinone-svn-trunk.jar" {
++grant codeBase "${app.dev.base}/lib/fop-transcoder.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/xmlgraphics-commons-svn-trunk.jar" {
++grant codeBase "file:/usr/share/java/xmlgraphics-commons.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/js.jar" {
++grant codeBase "file:/usr/share/java/js.jar" {
+   permission java.lang.RuntimePermission "createClassLoader";
+   permission java.net.SocketPermission "*", "listen, connect, resolve, accept";
+   permission java.lang.RuntimePermission "accessDeclaredMembers";
+Index: batik-1.8/resources/org/apache/batik/apps/svgbrowser/resources/svgbrowser.policy
+===================================================================
+--- batik-1.8.orig/resources/org/apache/batik/apps/svgbrowser/resources/svgbrowser.policy
++++ batik-1.8/resources/org/apache/batik/apps/svgbrowser/resources/svgbrowser.policy
+@@ -18,23 +18,23 @@
+ // $Id: svgbrowser.policy 1664625 2015-03-06 14:07:41Z lbernardo $
+ // -----------------------------------------------------------------------------
+ 
+-grant codeBase "${app.dev.base}/classes/" {
++grant codeBase "file:/usr/share/java/batik-all.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/xml-apis-1.3.04.jar" {
++grant codeBase "file:/usr/share/java/xml-apis.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/xml-apis-ext-1.3.04.jar" {
++grant codeBase "file:/usr/share/java/xml-apis-ext.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/xerces_2_5_0.jar" {
++grant codeBase "file:/usr/share/java/xercesImpl.jar" {
+   permission java.security.AllPermission;
+ };
+ 
+-grant codeBase "${app.dev.base}/lib/js.jar" {
++grant codeBase "file:/usr/share/java/js.jar" {
+   permission java.lang.RuntimePermission "createClassLoader";
+   permission java.net.SocketPermission "*", "listen, connect, resolve, accept";
+   permission java.lang.RuntimePermission "accessDeclaredMembers";

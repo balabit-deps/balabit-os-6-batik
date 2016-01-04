@@ -1,0 +1,48 @@
+From: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Date: Mon, 14 Oct 2013 14:59:02 +0200
+Subject: source-1.5
+
+---
+ build.xml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+Index: batik-1.8/build.xml
+===================================================================
+--- batik-1.8.orig/build.xml
++++ batik-1.8/build.xml
+@@ -747,7 +747,7 @@ JAVA=/usr/bin/java
+     <echo message="debug ${debug}, optimize ${optimize}, deprecation ${deprecation}"/>
+ 
+     <javac srcdir="${testsrc}" destdir="${dest}"  deprecation="${deprecation}" 
+-           debug="${debug}" optimize="${optimize}" encoding="UTF-8">
++           debug="${debug}" optimize="${optimize}" encoding="UTF-8" target="1.5"  source="1.5">
+       <classpath>
+         <pathelement location="${dest}"/>
+         <path refid="libs-classpath"/>
+@@ -770,7 +770,7 @@ JAVA=/usr/bin/java
+ 
+     <echo message="debug ${debug}, optimize ${optimize}, deprecation ${deprecation}"/>
+ 
+-    <javac srcdir="${samples}/tests/resources/java/sources" destdir="${samples}/tests/resources/java/classes"  deprecation="${deprecation}" 
++    <javac srcdir="${samples}/tests/resources/java/sources" destdir="${samples}/tests/resources/java/classes"  deprecation="${deprecation}"  target="1.5"  source="1.5"
+            debug="${debug}" optimize="${optimize}" encoding="UTF-8">
+       <classpath>
+         <pathelement location="${dest}"/>
+@@ -780,7 +780,7 @@ JAVA=/usr/bin/java
+       </classpath>
+     </javac>
+ 
+-    <javac srcdir="${testresources}" destdir="${testresources}/classes"  deprecation="${deprecation}" 
++    <javac srcdir="${testresources}" destdir="${testresources}/classes"  deprecation="${deprecation}"  target="1.5"  source="1.5"
+            debug="${debug}" optimize="${optimize}" encoding="UTF-8">
+       <classpath>
+         <pathelement location="${dest}"/>
+@@ -917,7 +917,7 @@ JAVA=/usr/bin/java
+ 
+   <target name="compile" depends="init, compile-prepare" unless="compile.done">
+     <javac destdir="${dest}" deprecation="${deprecation}" 
+-           debug="${debug}" optimize="${optimize}" encoding="UTF-8"
++           debug="${debug}" optimize="${optimize}" encoding="UTF-8" target="1.5"  source="1.5"
+            includeAntRuntime="true">
+       <src path="${src}"/>
+       <classpath refid="libs-classpath"/>
